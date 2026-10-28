@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>html,body{margin:0;padding:0}</style>
 <meta name="description" content="Именной календарь саха на 2027 год: четыре сезона, праздники республики, выходные и ваши семейные даты. PDF через Boosty.">
+<meta property="og:image" content="https://msyuge.github.io/sakha-calendar/img/cover.jpg">
 <title>Саха Календарь</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,6 +144,23 @@ section.block h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 8px; }
 .season li { display: grid; grid-template-columns: 18px 8.5em 1fr; gap: 8px; align-items: baseline; font-size: 15px; }
 .season li .ic { color: var(--lc); transform: translateY(2px); }
 .season li b { font-variant-numeric: tabular-nums; font-weight: 400; color: var(--muted); }
+.hero-pages { position: relative; aspect-ratio: 1 / 1.08; max-width: 520px; justify-self: center; width: 100%; }
+.pg { display: block; padding: 0; border: 1px solid var(--line); background: #fff; cursor: zoom-in; border-radius: 3px; box-shadow: 0 18px 40px -22px rgba(20, 32, 43, 0.55); overflow: hidden; }
+.pg img { display: block; width: 100%; height: auto; }
+.hero-pages .pg { position: absolute; width: 64%; }
+.hero-pages .back { right: 0; top: 0; transform: rotate(4deg); }
+.hero-pages .front { left: 0; bottom: 0; transform: rotate(-3deg); }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 24px; }
+.gi { margin: 0; min-width: 0; }
+.gi .pg { width: 100%; }
+.gi figcaption { margin-top: 10px; display: grid; gap: 2px; font-size: 15px; }
+.gi figcaption span { color: var(--muted); }
+#lb { border: 0; padding: 0; background: transparent; max-width: min(96vw, 900px); max-height: 96vh; overflow: auto; }
+#lb::backdrop { background: rgba(10, 16, 22, 0.82); }
+#lb img { display: block; width: 100%; height: auto; background: #fff; }
+#lb p { color: #fff; margin: 10px 4px 0; }
+.lb-x { position: sticky; top: 8px; float: right; margin: 8px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.92); color: #14202b; font-size: 26px; line-height: 1; cursor: pointer; }
+@media (max-width: 860px) { .gallery { grid-template-columns: 1fr 1fr; gap: 20px 14px; } .hero-pages { max-width: 420px; } }
 @media (max-width: 860px) { .seasons { grid-template-columns: 1fr; } }
 @media (max-width: 860px) { .rest-stats { grid-template-columns: 1fr 1fr; } .rest-cols { grid-template-columns: 1fr; gap: 20px; } }
 .empty { padding: 24px 0; color: var(--muted); }
@@ -221,18 +239,24 @@ footer a { color: var(--muted); }
     <div>
       <div class="kicker">Именной календарь на 2027 год · PDF</div>
       <h1>Год по-саха: <em>праздники, обычаи и дела вашей семьи</em></h1>
-      <p>Все республиканские праздники и памятные дни, Ысыах и Ньукулун, День Олонхо и День хомуса. Когда переезжать на сайылык, собирать лук и бруснику, косить сено и делать согум. А рядом дни рождения ваших родных и ваши семейные даты. Ваше имя на обложке, названия месяцев на языке саха. Распечатайте дома или в копицентре.</p>
+      <p>Все республиканские праздники и памятные дни, Ысыах и Ньукулун, День Олонхо и День хомуса. Когда переезжать на сайылык, собирать лук и бруснику, косить сено и делать согум. А рядом дни рождения ваших родных и ваши семейные даты. Ваше имя на обложке, названия месяцев на языке саха. Два PDF: полный календарь по месяцам и весь год на одном листе.</p>
       <div class="actions">
         <a class="btn" href="#order">Сделать свой календарь</a>
         <a class="btn ghost" href="#months">Посмотреть месяцы</a>
       </div>
     </div>
-    <div class="sheet" aria-label="Пример листа календаря: июнь 2027">
-      <div class="sheet-head"><b><span class="motif m-lyre" aria-hidden="true"></span>Бэс ыйа</b><span>июнь 2027</span></div>
-      <div class="mini" id="mini"></div>
-      <div class="sheet-notes" id="mini-notes"></div>
+    <div class="hero-pages">
+      <button type="button" class="pg back" data-i="3" aria-label="Открыть пример: июнь"><img src="img/june.jpg" alt="Страница июня из календаря" width="1112" height="1572"></button>
+      <button type="button" class="pg front" data-i="0" aria-label="Открыть пример: обложка"><img src="img/cover.jpg" alt="Обложка именного календаря «Семья Николаевых»" width="1112" height="1572"></button>
     </div>
   </section>
+
+  <section class="block" id="look" aria-labelledby="look-h">
+    <h2 id="look-h">Как выглядит календарь</h2>
+    <p class="lede">Настоящие страницы из PDF на примере семьи Николаевых. Нажмите, чтобы рассмотреть.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+  <dialog id="lb" aria-label="Страница календаря"><button type="button" class="lb-x" aria-label="Закрыть">×</button><img id="lb-img" alt=""><p id="lb-cap"></p></dialog>
 
   <section class="block" aria-labelledby="soon-h">
     <h2 id="soon-h">Ближайшие даты</h2>
@@ -478,25 +502,26 @@ footer a { color: var(--muted); }
   const icon = k => { const i = el("span", "ic"); i.style.setProperty("--ic", icUrl(k)); i.setAttribute("aria-hidden", "true"); return i; };
   const all = E.map(ev => resolve(ev, YEAR));
 
-  // hero mini sheet: June
-  (function mini() {
-    const box = document.getElementById("mini");
-    ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"].forEach(h => box.appendChild(el("div", "h", h)));
-    const first = new Date(YEAR, 5, 1); const lead = (first.getDay() + 6) % 7;
-    for (let i = 0; i < lead; i++) box.appendChild(el("div", "e"));
-    const marks = { 1: "family", 12: "ru", 21: "rs", 9: "own" };
-    const tuy = lastWeekday(YEAR, 6, 6).getDate(); marks[tuy] = "trad"; marks[tuy + 1] = "trad";
-    for (let d = 1; d <= 30; d++) {
-      const wd = new Date(YEAR, 5, d).getDay();
-      const c = el("div", (wd === 0 || wd === 6) ? "we" : "", d);
-      if (marks[d] === "own") { c.classList.add("mark", "own"); c.style.setProperty("--mc", "var(--accent)"); }
-      else if (marks[d]) { c.classList.add("mark"); c.style.setProperty("--mc", color(marks[d])); }
-      box.appendChild(c);
-    }
-    const notes = document.getElementById("mini-notes");
-    [["1", "День защиты детей"], ["1–20 ≈", "Сбор дикого лука"], ["9 ♡", "День рождения Айыыны — ваша дата"], ["21", "Ысыах, выходной"], [tuy + "–" + (tuy + 1) + " ≈", "Ысыах Туймаады"]].forEach(([d, t]) => {
-      const r = el("div"); r.appendChild(el("i", null, d)); r.appendChild(el("span", null, t)); notes.appendChild(r);
+  // real page previews + lightbox
+  (function gallery() {
+    const PAGES = [
+      ["img/cover.jpg", "Обложка", "Ваше имя и год, месяцы на языке саха в цветах года."],
+      ["img/seasons.jpg", "Круг года саха", "Четыре сезона: что происходит в природе и что пора делать."],
+      ["img/year.jpg", "Год одним взглядом", "Все выходные и праздники 2027 года на одной странице."],
+      ["img/june.jpg", "Месяц: Бэс ыйа", "Сезон, дела месяца по дням, праздники и ваши даты в сетке."],
+      ["img/august.jpg", "Месяц: Атырдьах ыйа", "Сенокос, ягоды, картофель и охота: всё видно по полосам."],
+      ["img/one-page.jpg", "Весь год на одном листе", "Отдельный PDF: повесить на стену или держать в телефоне."]
+    ];
+    const box = document.getElementById("gallery"), lb = document.getElementById("lb");
+    const open = i => { const [src, t, n] = PAGES[i]; document.getElementById("lb-img").src = src; document.getElementById("lb-img").alt = t; document.getElementById("lb-cap").textContent = t + ". " + n; if (lb.showModal) lb.showModal(); else window.open(src, "_blank"); };
+    PAGES.forEach(([src, t, n], i) => {
+      const f = el("figure", "gi"); const btn = el("button", "pg"); btn.type = "button"; btn.setAttribute("aria-label", "Открыть: " + t);
+      const img = el("img"); img.src = src; img.alt = t; img.loading = "lazy"; img.width = 1112; img.height = 1572; btn.appendChild(img); btn.addEventListener("click", () => open(i));
+      const cap = el("figcaption"); cap.append(el("b", null, t), el("span", null, n)); f.append(btn, cap); box.appendChild(f);
     });
+    document.querySelectorAll(".hero-pages .pg").forEach(b => b.addEventListener("click", () => open(+b.dataset.i)));
+    lb.querySelector(".lb-x").addEventListener("click", () => lb.close());
+    lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
   })();
 
   // upcoming dates from today (single-day events, this and next year)
