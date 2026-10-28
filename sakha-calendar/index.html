@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>html,body{margin:0;padding:0}</style>
-<meta name="description" content="Именной календарь саха на 2027 год: четыре сезона, праздники республики, выходные и ваши семейные даты. PDF через Boosty.">
+<meta name="description" content="Саха Календарь 2027: четыре сезона, праздники Республики Саха (Якутия), выходные и сезонные дела. Два PDF через Boosty.">
 <meta property="og:image" content="https://msyuge.github.io/sakha-calendar/img/cover.jpg">
 <title>Саха Календарь</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -170,6 +170,9 @@ section.block h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 8px; }
 .inside h3 { font-size: 21px; margin-bottom: 6px; }
 .inside p { margin: 0; color: var(--muted); }
 
+.buy { max-width: 40em; }
+.buy .actions { margin: 18px 0 8px; }
+.btn.off { opacity: 0.5; pointer-events: none; }
 .order { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: start; }
 .order > * { min-width: 0; }
 .order ul { padding-left: 1.1em; color: var(--muted); margin: 0; display: grid; gap: 6px; }
@@ -231,29 +234,29 @@ footer a { color: var(--muted); }
 <div class="wrap">
   <header class="top">
     <a class="brand" href="#top"><span class="motif m-lyre" aria-hidden="true"></span><b>Саха Календарь</b><span>2027</span></a>
-    <a class="btn" href="#order">Сделать свой</a>
+    <a class="btn" href="#order">Купить</a>
   </header>
   <div class="ornament" aria-hidden="true"></div>
 
   <section class="hero" id="top">
     <div>
-      <div class="kicker">Именной календарь на 2027 год · PDF</div>
-      <h1>Год по-саха: <em>праздники, обычаи и дела вашей семьи</em></h1>
-      <p>Все республиканские праздники и памятные дни, Ысыах и Ньукулун, День Олонхо и День хомуса. Когда переезжать на сайылык, собирать лук и бруснику, косить сено и делать согум. А рядом дни рождения ваших родных и ваши семейные даты. Ваше имя на обложке, названия месяцев на языке саха. Два PDF: полный календарь по месяцам и весь год на одном листе.</p>
+      <div class="kicker">Календарь на 2027 год · PDF</div>
+      <h1>Год по-саха: <em>праздники, обычаи и дела по сезонам</em></h1>
+      <p>Все республиканские праздники и памятные дни, Ысыах и Ньукулун, День Олонхо и День хомуса. Когда переезжать на сайылык, собирать лук и бруснику, косить сено и делать согум. Названия месяцев на языке саха, выходные 2027 года и четыре сезона жизни. Два PDF: полный календарь по месяцам и весь год на одном листе.</p>
       <div class="actions">
-        <a class="btn" href="#order">Сделать свой календарь</a>
+        <a class="btn" href="#order">Купить календарь</a>
         <a class="btn ghost" href="#months">Посмотреть месяцы</a>
       </div>
     </div>
     <div class="hero-pages">
       <button type="button" class="pg back" data-i="3" aria-label="Открыть пример: июнь"><img src="img/june.jpg" alt="Страница июня из календаря" width="1112" height="1572"></button>
-      <button type="button" class="pg front" data-i="0" aria-label="Открыть пример: обложка"><img src="img/cover.jpg" alt="Обложка именного календаря «Семья Николаевых»" width="1112" height="1572"></button>
+      <button type="button" class="pg front" data-i="0" aria-label="Открыть пример: обложка"><img src="img/cover.jpg" alt="Обложка календаря «Саха Календарь 2027»" width="1112" height="1572"></button>
     </div>
   </section>
 
   <section class="block" id="look" aria-labelledby="look-h">
     <h2 id="look-h">Как выглядит календарь</h2>
-    <p class="lede">Настоящие страницы из PDF на примере семьи Николаевых. Нажмите, чтобы рассмотреть.</p>
+    <p class="lede">Настоящие страницы из PDF. Нажмите, чтобы рассмотреть.</p>
     <div class="gallery" id="gallery"></div>
   </section>
   <dialog id="lb" aria-label="Страница календаря"><button type="button" class="lb-x" aria-label="Закрыть">×</button><img id="lb-img" alt=""><p id="lb-cap"></p></dialog>
@@ -300,31 +303,11 @@ footer a { color: var(--muted); }
   </section>
 
   <section class="block" id="order" aria-labelledby="order-h">
-    <div class="order">
-      <div>
-        <h2 id="order-h">Как получить свой календарь</h2>
-        <p class="lede">Календарь собирается под вашу семью. Обычно PDF готов в течение суток после оплаты.</p>
-        <ol class="steps">
-          <li><b>Заполните форму.</b> Имя для обложки и ваши семейные даты: дни рождения, годовщины, дни памяти.</li>
-          <li><b>Оплатите на Boosty</b> и отправьте автору текст заявки в сообщения.</li>
-          <li><b>Получите два PDF</b> в сообщения на Boosty: полный календарь по месяцам и весь год на одном листе.</li>
-        </ol>
-      </div>
-      <div id="order-box">
-        <form id="order-form" novalidate>
-          <label class="field"><span>Имя на обложке</span><input id="o-name" name="name" maxlength="60" required placeholder="Семья Николаевых или Сардана Ивановна"></label>
-          <div class="field">
-            <span>Ваши семейные даты</span>
-            <div class="dates" id="o-dates"></div>
-            <button class="btn ghost small" type="button" id="o-add">Добавить дату</button>
-            <p class="note">До 20 дат. На листах они отмечены знаком сердца: в орнаменте саха это символ любви и согласия.</p>
-          </div>
-          <label class="check"><input type="checkbox" id="o-hunt" checked> Показывать сроки охоты и рыбалки</label>
-          <label class="field"><span>Ваш ник на Boosty</span><input id="o-boosty" name="boosty" maxlength="60" required placeholder="Чтобы мы знали, кому отправить PDF"></label>
-          <p class="note" id="o-err" role="alert" hidden></p>
-          <button class="btn" type="submit">Подготовить заявку</button>
-        </form>
-      </div>
+    <div class="buy">
+      <h2 id="order-h">Как купить</h2>
+      <p class="lede">Оплатите на Boosty и сразу скачайте два PDF: полный календарь по месяцам и весь год на одном листе. Печатайте на A4 дома или в копицентре, или держите в телефоне.</p>
+      <div class="actions"><a class="btn" id="buy-btn" target="_blank" rel="noopener">Купить на Boosty</a></div>
+      <p class="note" id="buy-note"></p>
     </div>
   </section>
 
@@ -506,10 +489,10 @@ footer a { color: var(--muted); }
   // real page previews + lightbox
   (function gallery() {
     const PAGES = [
-      ["img/cover.jpg", "Обложка", "Ваше имя и год, месяцы на языке саха в цветах года."],
+      ["img/cover.jpg", "Обложка", "Месяцы на языке саха, у каждого свой цвет и узор."],
       ["img/seasons.jpg", "Круг года саха", "Четыре сезона: что происходит в природе и что пора делать."],
       ["img/year.jpg", "Год одним взглядом", "Все выходные и праздники 2027 года на одной странице."],
-      ["img/june.jpg", "Месяц: Бэс ыйа", "Сезон, дела месяца по дням, праздники и ваши даты в сетке."],
+      ["img/june.jpg", "Месяц: Бэс ыйа", "Сезон, дела месяца по дням, праздники и выходные в сетке."],
       ["img/august.jpg", "Месяц: Атырдьах ыйа", "Сенокос, ягоды, картофель и охота: всё видно по полосам."],
       ["img/one-page.jpg", "Весь год на одном листе", "Отдельный PDF: повесить на стену или держать в телефоне."]
     ];
@@ -628,69 +611,11 @@ footer a { color: var(--muted); }
   render();
   const cur = document.getElementById("m-" + month); if (cur) tabs.scrollLeft = Math.max(0, cur.offsetLeft - 16);
 
-  // order form: composes the personalization request for Boosty
+  // buy button: Boosty link goes here once the post is live
   const BOOSTY_URL = "";
-  const datesBox = document.getElementById("o-dates");
-  let dateSeq = 0;
-  function addDate(d, t) {
-    if (datesBox.children.length >= 20) return;
-    const i = ++dateSeq;
-    const r = el("div", "drow");
-    const di = el("input"); di.id = "d-date-" + i; di.placeholder = "дд.мм"; di.maxLength = 5; di.inputMode = "numeric"; di.setAttribute("aria-label", "Дата"); if (d) di.value = d;
-    const ti = el("input"); ti.id = "d-text-" + i; ti.placeholder = "День рождения Айсена"; ti.maxLength = 50; ti.setAttribute("aria-label", "Что за дата"); if (t) ti.value = t;
-    const x = el("button", null, "×"); x.type = "button"; x.setAttribute("aria-label", "Удалить дату");
-    x.addEventListener("click", () => r.remove());
-    r.append(di, ti, x); datesBox.appendChild(r);
-  }
-  addDate(); addDate();
-  document.getElementById("o-add").addEventListener("click", () => addDate());
-
-  const form = document.getElementById("order-form");
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    const v = id => document.getElementById(id).value.trim();
-    const err = document.getElementById("o-err");
-    const problems = [];
-    if (!v("o-name")) problems.push("впишите имя для обложки");
-    if (!v("o-boosty")) problems.push("укажите ник на Boosty");
-    const dates = [];
-    [...datesBox.children].forEach(r => {
-      const [di, ti] = r.querySelectorAll("input");
-      const d = di.value.trim(), t = ti.value.trim();
-      if (!d && !t) return;
-      const m = d.match(/^(\d{1,2})[.\/-](\d{1,2})$/);
-      const ok = m && +m[2] >= 1 && +m[2] <= 12 && +m[1] >= 1 && +m[1] <= new Date(YEAR, +m[2], 0).getDate();
-      if (!ok || !t) { problems.push("проверьте дату «" + (d || t) + "»: нужен формат дд.мм и подпись"); return; }
-      dates.push(String(+m[1]).padStart(2, "0") + "." + String(+m[2]).padStart(2, "0") + " " + t);
-    });
-    if (problems.length) { err.textContent = "Чтобы продолжить, " + problems.join("; ") + "."; err.hidden = false; return; }
-    err.hidden = true;
-    const text = "Заявка: Саха Календарь 2027\n" +
-      "Имя: " + v("o-name") + "\n" +
-      "Охота и рыбалка: " + (document.getElementById("o-hunt").checked ? "да" : "нет") + "\n" +
-      "Boosty: " + v("o-boosty") + "\n" +
-      "Даты:" + (dates.length ? "\n" + dates.join("\n") : " нет");
-    const box = document.getElementById("order-box");
-    const done = el("div", "done");
-    done.appendChild(el("h3", null, "Заявка готова"));
-    done.appendChild(el("p", "note", BOOSTY_URL
-      ? "Скопируйте текст, оплатите календарь на Boosty и отправьте этот текст автору в сообщения."
-      : "Продажа на Boosty скоро откроется. Скопируйте и сохраните текст заявки, ссылка на оплату появится на этой странице."));
-    const pre = el("pre", null, text); done.appendChild(pre);
-    const btns = el("div", "row-btns");
-    const copy = el("button", "btn", "Скопировать заявку"); copy.type = "button";
-    copy.addEventListener("click", () => {
-      const ok = () => { copy.textContent = "Скопировано"; };
-      const fallback = () => { const r = document.createRange(); r.selectNodeContents(pre); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); copy.textContent = "Текст выделен, скопируйте его"; };
-      try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (_) { fallback(); }
-    });
-    btns.appendChild(copy);
-    if (BOOSTY_URL) { const go = el("a", "btn ghost", "Перейти на Boosty"); go.href = BOOSTY_URL; go.target = "_blank"; go.rel = "noopener"; btns.appendChild(go); }
-    const back = el("button", "btn ghost", "Изменить"); back.type = "button";
-    back.addEventListener("click", () => { box.replaceChildren(form); });
-    btns.appendChild(back); done.appendChild(btns);
-    box.replaceChildren(done);
-  });
+  const buy = document.getElementById("buy-btn");
+  if (BOOSTY_URL) buy.href = BOOSTY_URL;
+  else { buy.removeAttribute("target"); buy.setAttribute("aria-disabled", "true"); buy.classList.add("off"); document.getElementById("buy-note").textContent = "Продажа на Boosty скоро откроется."; }
 })();
 </script>
 
