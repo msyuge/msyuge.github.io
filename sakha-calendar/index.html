@@ -214,7 +214,7 @@ footer a { color: var(--muted); }
 .sheet-head b { display: inline-flex; align-items: center; gap: 8px; }
 .sheet-head .motif { width: 30px; height: 30px; }
 .mini .own::after { content: ""; width: 11px; height: 11px; background-color: var(--accent); -webkit-mask: var(--m) no-repeat center / contain; mask: var(--m) no-repeat center / contain; --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='black' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M50 90C30 74 14 60 14 42C14 28 26 20 36 22C44 24 48 30 50 36C52 30 56 24 64 22C74 20 86 28 86 42C86 60 70 74 50 90Z'/%3E%3Cpath d='M50 76V46M50 46C45 40 45 33 50 28C55 33 55 40 50 46Z'/%3E%3C/svg%3E"); }
-@media (max-width: 860px) { @media (max-width: 860px) {
+@media (max-width: 860px) {
   .hero, .order { grid-template-columns: 1fr; gap: 28px; }
   .soon { grid-template-columns: 1fr 1fr; }
   .inside { grid-template-columns: 1fr; gap: 18px; }
@@ -227,6 +227,38 @@ footer a { color: var(--muted); }
   .brand span { display: none; }
 }
 @media (prefers-reduced-motion: no-preference) { .btn, .chip, .months button { transition: background-color .15s, opacity .15s, border-color .15s; } }
+
+/* Покупка: цена в кнопках, полоса в середине, карточка предложения, FAQ, липкая кнопка на телефоне */
+.price-tag { font-variant-numeric: tabular-nums; }
+.trust { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: var(--muted); }
+.trust li::before { content: "✓ "; color: var(--c-home); font-weight: 700; }
+.cta-band { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 6px; padding: 18px 22px; margin-block: 8px 40px; }
+.cta-band b { font-family: var(--f-display); font-size: 22px; display: block; }
+.cta-band span { color: var(--muted); font-size: 15px; }
+.offer { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: start; }
+.offer > * { min-width: 0; }
+.offer-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 24px; box-shadow: 0 18px 40px -28px rgba(20, 32, 43, 0.5); }
+.offer-card .price { font-family: var(--f-display); font-size: 44px; font-weight: 700; line-height: 1; margin: 6px 0 4px; }
+.offer-card .price small { font-size: 16px; font-weight: 400; color: var(--muted); font-family: var(--f-body); margin-left: 6px; }
+.offer-card ul { list-style: none; padding: 0; margin: 16px 0 20px; display: grid; gap: 8px; }
+.offer-card li { padding-left: 24px; position: relative; }
+.offer-card li::before { content: "✓"; position: absolute; left: 0; color: var(--c-home); font-weight: 700; }
+.offer-card .btn { width: 100%; padding-block: 14px; font-size: 18px; }
+.offer-card .note { margin-top: 10px; text-align: center; }
+.steps { list-style: none; padding: 0; margin: 0 0 24px; counter-reset: st; display: grid; gap: 12px; }
+.steps li { counter-increment: st; padding-left: 44px; position: relative; min-height: 32px; }
+.steps li::before { content: counter(st); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 50%; background: var(--sunk); font-family: var(--f-display); font-weight: 700; display: grid; place-items: center; }
+.faq details { border-top: 1px solid var(--line); padding-block: 10px; }
+.faq details:last-child { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; font-weight: 700; }
+.faq p { margin: 6px 0 0; color: var(--muted); }
+.sticky-buy { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: none; align-items: center; justify-content: space-between; gap: 12px; padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -8px 24px -16px rgba(20, 32, 43, 0.5); transform: translateY(110%); }
+.sticky-buy b { font-family: var(--f-display); font-size: 17px; line-height: 1.2; }
+.sticky-buy small { display: block; color: var(--muted); font-size: 13px; }
+.sticky-buy.show { transform: none; }
+@media (max-width: 860px) { .offer { grid-template-columns: 1fr; } .sticky-buy { display: flex; } body { padding-bottom: 76px; } }
+@media (prefers-reduced-motion: no-preference) { .sticky-buy { transition: transform .2s; } }
+.btn.off { opacity: .45; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -234,7 +266,7 @@ footer a { color: var(--muted); }
 <div class="wrap">
   <header class="top">
     <a class="brand" href="#top"><span class="motif m-lyre" aria-hidden="true"></span><b>Саха Календарь</b><span>2027</span></a>
-    <a class="btn" href="#order">Купить</a>
+    <a class="btn buy-link" href="#order">Купить · <span class="price-tag">299 ₽</span></a>
   </header>
   <div class="ornament" aria-hidden="true"></div>
 
@@ -244,9 +276,14 @@ footer a { color: var(--muted); }
       <h1>Год по-саха: <em>праздники, обычаи и дела по сезонам</em></h1>
       <p>Все республиканские праздники и памятные дни, Ысыах и Ньукулун, День Олонхо и День хомуса. Когда переезжать на сайылык, собирать лук и бруснику, косить сено и делать согум. Названия месяцев на языке саха, выходные 2027 года и четыре сезона жизни. Два PDF: полный календарь по месяцам и весь год на одном листе.</p>
       <div class="actions">
-        <a class="btn" href="#order">Купить календарь</a>
-        <a class="btn ghost" href="#months">Посмотреть месяцы</a>
+        <a class="btn buy-link" href="#order">Купить за <span class="price-tag">299 ₽</span></a>
+        <a class="btn ghost" href="#look">Посмотреть страницы</a>
       </div>
+      <ul class="trust">
+        <li>2 файла PDF, A4</li>
+        <li>Скачивание сразу после оплаты</li>
+        <li>Печатайте сколько нужно</li>
+      </ul>
     </div>
     <div class="hero-pages">
       <button type="button" class="pg back" data-i="3" aria-label="Открыть пример: июнь"><img src="img/june.jpg" alt="Страница июня из календаря" width="1112" height="1572"></button>
@@ -260,6 +297,21 @@ footer a { color: var(--muted); }
     <div class="gallery" id="gallery"></div>
   </section>
   <dialog id="lb" aria-label="Страница календаря"><button type="button" class="lb-x" aria-label="Закрыть">×</button><img id="lb-img" alt=""><p id="lb-cap"></p></dialog>
+
+  <section class="block" aria-labelledby="inside-h">
+    <h2 id="inside-h">Для кого этот календарь</h2>
+    <p class="lede">Для семей, которые хотят жить в ритме родной земли: помнить праздники, держать хозяйство и передавать обычаи детям.</p>
+    <div class="inside">
+      <div><h3>Для хозяйки дома</h3><p>Когда собирать лук, землянику и бруснику, когда делать согум и заготавливать лёд. День народного мастера, День матери, День сайылыка.</p></div>
+      <div><h3>Для детей</h3><p>Названия месяцев на языке саха, День родного языка, День хомуса и День Олонхо. 1 июня и 1 сентября на том же листе.</p></div>
+      <div><h3>Для всей семьи</h3><p>Ысыах, День республики, ледоход и белые ночи. Сенокос, рыбалка и сезоны охоты для мужчин в доме.</p></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div><b>Саха Календарь 2027 · <span class="price-tag">299 ₽</span></b><span>Полный календарь и весь год на одном листе. Оплата и скачивание на Boosty.</span></div>
+    <a class="btn buy-link" href="#order">Купить календарь</a>
+  </div>
 
   <section class="block" aria-labelledby="soon-h">
     <h2 id="soon-h">Ближайшие даты</h2>
@@ -292,22 +344,36 @@ footer a { color: var(--muted); }
     <div class="list" id="list"></div>
   </section>
 
-  <section class="block" aria-labelledby="inside-h">
-    <h2 id="inside-h">Для кого этот календарь</h2>
-    <p class="lede">Для семей, которые хотят жить в ритме родной земли: помнить праздники, держать хозяйство и передавать обычаи детям.</p>
-    <div class="inside">
-      <div><h3>Для хозяйки дома</h3><p>Когда собирать лук, землянику и бруснику, когда делать согум и заготавливать лёд. День народного мастера, День матери, День сайылыка.</p></div>
-      <div><h3>Для детей</h3><p>Названия месяцев на языке саха, День родного языка, День хомуса и День Олонхо. 1 июня и 1 сентября на том же листе.</p></div>
-      <div><h3>Для всей семьи</h3><p>Ысыах, День республики, ледоход и белые ночи. Сенокос, рыбалка и сезоны охоты для мужчин в доме.</p></div>
-    </div>
-  </section>
-
   <section class="block" id="order" aria-labelledby="order-h">
-    <div class="buy">
-      <h2 id="order-h">Как купить</h2>
-      <p class="lede">Оплатите на Boosty и сразу скачайте два PDF: полный календарь по месяцам и весь год на одном листе. Печатайте на A4 дома или в копицентре, или держите в телефоне.</p>
-      <div class="actions"><a class="btn" id="buy-btn" target="_blank" rel="noopener">Купить на Boosty</a></div>
-      <p class="note" id="buy-note"></p>
+    <div class="offer">
+      <div>
+        <h2 id="order-h">Как купить</h2>
+        <p class="lede">Покупка один раз, файлы остаются у вас.</p>
+        <ol class="steps">
+          <li>Нажмите «Купить на Boosty» и оплатите картой.</li>
+          <li>Скачайте два PDF прямо со страницы поста.</li>
+          <li>Распечатайте на A4 дома или в копицентре, или держите в телефоне.</li>
+        </ol>
+        <div class="faq">
+          <details><summary>Нужно ли регистрироваться на Boosty?</summary><p>Да, Boosty попросит войти по почте или через соцсеть. Это занимает минуту, после оплаты файлы всегда доступны в вашем аккаунте.</p></details>
+          <details><summary>Можно распечатать несколько раз?</summary><p>Да, для своей семьи печатайте сколько угодно: на кухню, в комнату детям, бабушке.</p></details>
+          <details><summary>Будет ли печатная версия?</summary><p>Нет, календарь только в PDF. Так он дешевле и приходит сразу.</p></details>
+          <details><summary>Удобно ли смотреть с телефона?</summary><p>Да, PDF открывается в любом телефоне. Лист «весь год» удобно сохранить в галерею.</p></details>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="kicker">Саха Календарь 2027</div>
+        <div class="price"><span class="price-tag">299 ₽</span><small>разовая оплата</small></div>
+        <ul>
+          <li>Полный календарь: обложка, круг года, 12 месяцев</li>
+          <li>Весь год на одном листе</li>
+          <li>Названия месяцев на языке саха</li>
+          <li>Все праздники республики и выходные 2027 года</li>
+          <li>Дела по сезонам: сенокос, ягоды, береста, дрова</li>
+        </ul>
+        <a class="btn buy-link" id="buy-btn" href="#order">Купить на Boosty</a>
+        <p class="note" id="buy-note">Откроется страница Boosty в новой вкладке.</p>
+      </div>
     </div>
   </section>
 
@@ -316,6 +382,10 @@ footer a { color: var(--muted); }
     <div>Саха Календарь · 2027. Республиканские праздники и памятные дни по перечню указов и законов РС(Я) (<a href="https://base.garant.ru/26723596/" target="_blank" rel="noopener">Гарант</a>) и календарю Национальной библиотеки РС(Я). Сроки охоты по указу Главы РС(Я) № 1786.</div>
     <div>Знаком «≈» отмечены примерные сроки: они зависят от погоды и улуса.</div>
   </footer>
+</div>
+<div class="sticky-buy" id="sticky-buy" aria-hidden="true">
+  <div><b>Саха Календарь 2027</b><small>2 PDF · <span class="price-tag">299 ₽</span></small></div>
+  <a class="btn buy-link" href="#order" tabindex="-1">Купить</a>
 </div>
 
 <script>
@@ -613,9 +683,20 @@ footer a { color: var(--muted); }
 
   // buy button: Boosty link goes here once the post is live
   const BOOSTY_URL = "https://boosty.to/alec.maks/posts/e50428c4-2372-4651-895d-517976ef72de";
-  const buy = document.getElementById("buy-btn");
-  if (BOOSTY_URL) buy.href = BOOSTY_URL;
-  else { buy.removeAttribute("target"); buy.setAttribute("aria-disabled", "true"); buy.classList.add("off"); document.getElementById("buy-note").textContent = "Продажа на Boosty скоро откроется."; }
+  const buyLinks = document.querySelectorAll(".buy-link");
+  if (BOOSTY_URL) buyLinks.forEach(a => { a.href = BOOSTY_URL; a.target = "_blank"; a.rel = "noopener"; });
+  else { const b = document.getElementById("buy-btn"); b.setAttribute("aria-disabled", "true"); b.classList.add("off"); document.getElementById("buy-note").textContent = "Продажа на Boosty скоро откроется."; }
+  // Липкая кнопка на телефоне: видна, когда кнопки героя и карточки покупки вне экрана
+  const sticky = document.getElementById("sticky-buy");
+  const seen = new Set();
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target));
+    const on = seen.size === 0;
+    sticky.classList.toggle("show", on);
+    sticky.setAttribute("aria-hidden", on ? "false" : "true");
+    sticky.querySelector("a").tabIndex = on ? 0 : -1;
+  });
+  [document.querySelector(".hero .actions"), document.getElementById("order")].forEach(el => io.observe(el));
 })();
 </script>
 
