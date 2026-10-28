@@ -612,7 +612,7 @@ footer a { color: var(--muted); }
   const cur = document.getElementById("m-" + month); if (cur) tabs.scrollLeft = Math.max(0, cur.offsetLeft - 16);
 
   // buy button: Boosty link goes here once the post is live
-  const BOOSTY_URL = "";
+  const BOOSTY_URL = "https://boosty.to/alec.maks/posts/e50428c4-2372-4651-895d-517976ef72de";
   const buy = document.getElementById("buy-btn");
   if (BOOSTY_URL) buy.href = BOOSTY_URL;
   else { buy.removeAttribute("target"); buy.setAttribute("aria-disabled", "true"); buy.classList.add("off"); document.getElementById("buy-note").textContent = "Продажа на Boosty скоро откроется."; }
